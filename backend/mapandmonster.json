@@ -1,0 +1,132 @@
+{
+  "maps": {
+    "slum": {
+      "name": "Khu Ổ Chuột",
+      "description": "Một khu vực tối tăm với những con hẻm nhỏ hẹp. Mùi rác thải bốc lên nồng nặc.",
+      "level_range": [1, 5],
+      "monsters": [
+        {
+          "name": "Chuột Cống",
+          "health": 20,
+          "damage": 3,
+          "exp": 8,
+          "gold_range": [3, 10]
+        },
+        {
+          "name": "Thằn lằn",
+          "health": 30,
+          "damage": 5,
+          "exp": 10,
+          "gold_range": [5, 12]
+        },
+        {
+          "name": "Thằng ăn cướp",
+          "health": 40,
+          "damage": 7,
+          "exp": 12,
+          "gold_range": [10, 20]
+        }
+      ]
+    },
+
+    "slumcity": {
+      "name": "Thành phố Ổ Chuột",
+      "description": "Khu trung tâm của khu ổ chuột nghèo nàn.",
+      "level_range": [5, 10],
+      "monsters": [
+        {
+          "name": "Thằng ăn cướp",
+          "health": 70,
+          "damage": 9,
+          "exp": 18,
+          "gold_range": [25, 45]
+        },
+        {
+          "name": "Thằng giang hồ",
+          "health": 85,
+          "damage": 11,
+          "exp": 22,
+          "gold_range": [30, 60]
+        },
+        {
+          "name": "Thằng khùng",
+          "health": 95,
+          "damage": 13,
+          "exp": 25,
+          "gold_range": [40, 80]
+        },
+        {
+          "name": "Kẻ móc túi",
+          "health": 110,
+          "damage": 15,
+          "exp": 28,
+          "gold_range": [50, 100]
+        },
+        {
+          "name": "Băng đảng cống nạp tiền",
+          "health": 150,
+          "damage": 18,
+          "exp": 32,
+          "gold_range": [60, 120]
+        },
+        {
+          "name": "Ông già bán nước uống",
+          "health": 130,
+          "damage": 20,
+          "exp": 35,
+          "gold_range": [80, 150]
+        }
+      ]
+    },
+
+    "blackleaf": {
+      "name": "Địa bàn Lá Đen",
+      "description": "Khu địa bàn của băng đảng Lá Đen, rất ít người muốn vô nơi này vì sự nguy hiểm.",
+      "level_range": [10, 15],
+      "monsters": [
+        {
+          "name": "Kẻ canh gác",
+          "health": 220,
+          "damage": 35,
+          "exp": 140,
+          "gold_range": [20, 60]
+        },
+        {
+          "name": "Phù sư Lá Đen",
+          "health": 150,
+          "damage": 55,
+          "exp": 160,
+          "gold_range": [40, 80]
+        },
+        {
+          "name": "Đàn Lá Đen bí ẩn",
+          "health": 50,
+          "damage": 10,
+          "exp": 40,
+          "gold_range": [5, 12]
+        },
+        {
+          "name": "Lính tuần tra Lá Đen",
+          "health": 260,
+          "damage": 40,
+          "exp": 180,
+          "gold_range": [30, 90]
+        },
+        {
+          "name": "Cây Lá Đen hắc ám",
+          "health": 200,
+          "damage": 12,
+          "exp": 200,
+          "gold_range": [50, 120]
+        },
+        {
+          "name": "Kẻ canh gác",
+          "health": 220,
+          "damage": 35,
+          "exp": 140,
+          "gold_range": [20, 60]
+        }
+      ]
+    }
+  }
+}
