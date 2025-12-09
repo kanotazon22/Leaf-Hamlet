@@ -1,0 +1,599 @@
+:root {
+    --color-bg-light: #ffffff;
+    --color-bg-dark: #f5f5f5;
+    --color-text-main: #1a1a1a;
+    --color-text-sub: #666666;
+    --color-input-border: #d0d0d0;
+    --color-my-message: #2c2c2c;
+    --color-other-message: #ececec;
+    --color-server-me: #1a73e8;
+    --color-server-other: #7fb3f0;
+    --color-command-border: #d4a017;
+    --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fix cho browser - ngăn overflow */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--color-bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    background: var(--color-bg-light);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    padding: 28px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* FIX CHÍNH: Chat container - đảm bảo không bị tràn */
+#chat {
+    display: none;
+    height: 100vh;
+    width: 100%;
+    max-width: 480px;
+    flex-direction: column;
+    position: relative;
+    background: var(--color-bg-light);
+    overflow: hidden;
+}
+
+#chat.active {
+    display: flex;
+}
+
+h2 {
+    margin-bottom: 24px;
+    color: var(--color-text-main);
+    font-size: 24px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+input {
+    width: 100%;
+    padding: 13px 16px;
+    margin: 8px 0;
+    border: 1.5px solid var(--color-input-border);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: var(--font-main);
+    background: var(--color-bg-light);
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--color-text-main);
+    background: #fafafa;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    background: var(--color-text-main);
+    color: var(--color-bg-light);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-main);
+    margin-top: 12px;
+    transition: background 0.2s ease, transform 0.1s ease;
+    user-select: none;
+}
+
+button:hover {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* FIX CHÍNH: Messages container - chiều cao cố định */
+#messages {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px 8px;
+    margin-bottom: 8px;
+    background: var(--color-bg-light);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 0; /* Quan trọng cho flexbox */
+    height: 0; /* Cho phép flex grow */
+}
+
+/* Custom scrollbar */
+#messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    background: #d0d0d0;
+    border-radius: 3px;
+}
+
+#messages::-webkit-scrollbar-thumb:hover {
+    background: #b0b0b0;
+}
+
+.message {
+    padding: 11px 15px;
+    margin: 2px 0;
+    border-radius: 18px;
+    max-width: 82%;
+    word-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.45;
+    font-size: 15px;
+    white-space: pre-wrap;
+    animation: messageSlide 0.2s ease-out;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    flex-shrink: 0;
+}
+
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tin nhắn của mình - BÊN PHẢI */
+.me {
+    background: var(--color-my-message);
+    color: var(--color-bg-light);
+    margin-left: auto;
+    text-align: left;
+    border-bottom-right-radius: 4px;
+}
+
+/* Tin nhắn command của mình */
+.me.command {
+    border: 2px solid var(--color-command-border);
+    font-weight: 500;
+    background: #3a3a3a;
+}
+
+/* Tin nhắn của người chơi khác - BÊN TRÁI */
+.other {
+    background: var(--color-other-message);
+    color: var(--color-text-main);
+    margin-right: auto;
+    border-bottom-left-radius: 4px;
+}
+
+/* Tin nhắn command của người khác */
+.other.command {
+    border: 2px solid var(--color-command-border);
+    font-weight: 500;
+    background: #f5f5f5;
+}
+
+/* Tin nhắn từ SERVER cho MÌNH - BÊN PHẢI */
+.server-me {
+    background: var(--color-server-me);
+    color: var(--color-bg-light);
+    margin-left: auto;
+    text-align: left;
+    border-bottom-right-radius: 4px;
+    font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+    font-size: 13.5px;
+}
+
+/* Tin nhắn từ SERVER cho NGƯỜI KHÁC - BÊN TRÁI */
+.server-other {
+    background: var(--color-server-other);
+    color: var(--color-text-main);
+    margin-right: auto;
+    text-align: left;
+    border-bottom-left-radius: 4px;
+    font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+    font-size: 13.5px;
+}
+
+.sender-name {
+    font-weight: 600;
+    font-size: 11.5px;
+    margin-bottom: 4px;
+    display: block;
+    letter-spacing: 0.3px;
+    opacity: 0.85;
+}
+
+/* Màu tên khác nhau cho từng loại tin nhắn */
+.other .sender-name {
+    color: var(--color-text-sub);
+}
+
+.server-me .sender-name {
+    color: #ffffff;
+    opacity: 0.95;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-size: 10.5px;
+}
+
+.server-other .sender-name {
+    color: #1560bd;
+    opacity: 1;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-size: 10.5px;
+}
+
+/* FIX CHÍNH: Input area wrapper - cố định ở dưới */
+.input-area-wrapper {
+    flex-shrink: 0;
+    padding: 12px 16px;
+    background: var(--color-bg-light);
+    border-top: 1px solid #e5e5e5;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#messageInput {
+    flex: 1;
+    margin: 0;
+    border-radius: 20px;
+    padding: 12px 18px;
+}
+
+#sendButton {
+    width: auto;
+    padding: 12px 24px;
+    margin: 0;
+    border-radius: 20px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.status-bar {
+    font-size: 12.5px;
+    color: var(--color-text-sub);
+    text-align: center;
+    margin-top: 12px;
+    opacity: 0.8;
+}
+
+#password {
+    font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+    letter-spacing: 2px;
+}
+
+/* Loading state */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Focus visible for accessibility */
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--color-text-main);
+    outline-offset: 2px;
+}
+
+/* ==================== SERVER STATUS ==================== */
+.server-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d0d0d0;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.online {
+    background: #34c759;
+    box-shadow: 0 0 8px rgba(52, 199, 89, 0.5);
+}
+
+.status-dot.offline {
+    background: #ff3b30;
+    box-shadow: 0 0 8px rgba(255, 59, 48, 0.5);
+    animation: none;
+}
+
+.status-text {
+    color: #666;
+    font-family: var(--font-main);
+    letter-spacing: 0.5px;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ==================== REMEMBER ME ==================== */
+.remember-container {
+    margin: 12px 0;
+    text-align: center;
+}
+
+.remember-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.remember-label:hover {
+    color: #333;
+}
+
+.remember-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: #1a1a1a;
+}
+
+/* ==================== SAVED ACCOUNTS ==================== */
+#savedAccounts {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1.5px solid #e5e5e5;
+}
+
+.saved-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+.saved-account {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+.saved-account:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+}
+
+.account-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.account-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.account-server {
+    font-size: 11px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.quick-login-btn {
+    padding: 8px 16px;
+    margin: 0;
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.quick-login-btn:hover {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+.quick-login-btn:active {
+    transform: translateY(0);
+}
+
+.remove-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    color: #999;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-btn:hover {
+    background: #ffe5e5;
+    color: #ff3b30;
+    transform: scale(1.1);
+}
+
+.remove-btn:active {
+    transform: scale(0.95);
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    html, body {
+        height: 100vh;
+        height: 100dvh; /* Dynamic viewport height */
+    }
+    
+    body {
+        padding: 0;
+        align-items: stretch;
+    }
+    
+    .container {
+        border-radius: 0;
+        max-width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        max-height: none;
+        padding: 20px 16px;
+    }
+    
+    #chat {
+        max-width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        border-radius: 0;
+    }
+    
+    #messages {
+        padding: 10px 6px;
+    }
+    
+    .message {
+        max-width: 85%;
+        font-size: 14.5px;
+    }
+    
+    h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    
+    input {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    #messageInput {
+        padding: 11px 16px;
+        font-size: 16px;
+    }
+    
+    #sendButton {
+        padding: 11px 20px;
+    }
+    
+    .input-area-wrapper {
+        padding: 8px 12px;
+    }
+    
+    .server-status {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+    
+    .saved-account {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .account-info {
+        flex: 1 1 100%;
+    }
+    
+    .quick-login-btn {
+        flex: 1;
+    }
+    
+    .remove-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 560px;
+    }
+    
+    #chat {
+        max-width: 560px;
+    }
+}
