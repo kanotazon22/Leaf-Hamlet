@@ -6,7 +6,7 @@ Link to play: [https://kanotazon22.github.io/project/](https://kanotazon22.githu
 
 ## 🧙‍♂️ Introduction
 
-**The Leafy Village** is a **text-based MMORPG** where players adventure in a simple yet eventful world filled with combat, quests, and social interaction—all in text.
+**The Leafy Village** is a **text-based MMORPG** where players adventure in a simple yet eventful world filled with combat, quests, and social interaction all in text.
 
 The game is minimalist, lightweight, runs directly on the web, and is playable on any device.
 
@@ -14,9 +14,9 @@ The game is minimalist, lightweight, runs directly on the web, and is playable o
 
 This project was built and developed by 3 friends:
 
-* **Simla** – Gameplay & Content Design
-* **Luna** – Programming & System Optimization
-* **Beluga** – Interface & User Experience
+* **Simla** – Coder
+* **Luna** – Tester
+* **Beluga** – Tester
 
 ## 🎮 Key Features
 
@@ -32,4 +32,4 @@ This project was built and developed by 3 friends:
 
 ## 📌 Suggestions & Feedback
 
-All feedback is valuable! Please send your comments so we can improve Xóm Nhà Lá even better.
+All feedback is valuable! Please send your comments so we can improve the game even better.
