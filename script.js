@@ -1,5 +1,5 @@
 // ==================== CONFIGURATION ====================
-const SERVER_URL = 'xomnhala1.loca.lt'; // Thay đổi URL server tại đây
+const SERVER_URL = 'game.xomnhala.com'; // Thay đổi URL server tại đây
 
 // ==================== GLOBAL STATE ====================
 let ws = null;
