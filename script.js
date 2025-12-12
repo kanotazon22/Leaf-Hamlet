@@ -1,5 +1,4 @@
-// ==================== CONFIGURATION ====================
-const SERVER_URL = 'game.xomnhala.com'; // Thay đổi URL server tại đây
+const SERVER_URL = '66d66282-ed8d-46e9-bcf9-793cb6a7b636.cfargotunnel.com';
 
 // ==================== GLOBAL STATE ====================
 let ws = null;
