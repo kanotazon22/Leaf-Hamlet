@@ -1,4 +1,4 @@
-# The Leafy Village
+# Leaf Hamlet
 
 **Text-Based Online MMORPG**
 
@@ -6,7 +6,7 @@ Link to play: [https://kanotazon22.github.io/project/](https://kanotazon22.githu
 
 ## 🧙‍♂️ Introduction
 
-**The Leafy Village** is a **text-based MMORPG** where players adventure in a simple yet eventful world filled with combat, quests, and social interaction all in text.
+**Leaf Hamlet** is a **text-based MMORPG** where players adventure in a simple yet eventful world filled with combat, quests, and social interaction all in text.
 
 The game is minimalist, lightweight, runs directly on the web, and is playable on any device.
 
@@ -28,4 +28,4 @@ This project was built and developed by 3 friends:
 
 ## 📌 Suggestions & Feedback
 
-All feedback is valuable! Please send your comments so we can improve Xóm Nhà Lá even better.
+All feedback is valuable! Please send your comments so we can improve Leaf Hamlet even better.
