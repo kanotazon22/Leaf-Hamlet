@@ -43,14 +43,11 @@ Leaf Hamlet offers a classic role-playing experience but modernized with conveni
 This project is built and developed by 3 passionate friends:
 
 | Roles | Members |
-
 | :--- | :--- |
-
 | **Coder / Developer** | 👨‍💻 **Simla** |
-
 | **Tester / QA** | 🕵️‍♀️ **Luna** |
-
 | **Tester / QA** | 🐳 **Beluga** |
+
 
  ---
 
@@ -64,4 +61,4 @@ If you encounter bugs or have new feature ideas:
 2. Or create an **Issue** directly on this repository.
 
 ---
-*Leaf Hamlet © 2024 - Made with ❤️ by Simla & Friends*
+*Leaf Hamlet © 2025 - Made by Simla & Friends*
