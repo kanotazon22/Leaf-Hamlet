@@ -584,10 +584,46 @@ document.addEventListener('touchend', (e) => {
 // Exports
 window.ChatModule = ChatModule;
 window.DEBUG = DEBUG;
-window.sendMessage = () => {
+window.sendMessage = (event) => {
+    // ✅ CRITICAL: Prevent ANY default behavior
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+    }
+    
     const input = Utils.getEl('messageInput');
-    if (input && ChatModule.send(input.value)) {
-        input.value = input.value.startsWith('/') ? '/' : '';
+    if (!input) {
+        DEBUG.warn('MSG', 'Input element not found');
+        return false;
+    }
+    
+    const msg = input.value.trim();
+    
+    // ✅ Không gửi rỗng
+    if (!msg || msg === '/') {
+        DEBUG.debug('MSG', 'Empty message, skipping');
+        return false;
+    }
+    
+    // ✅ Send message
+    const sent = ChatModule.send(msg);
+    
+    if (sent) {
+        // ✅ Clear or keep "/"
+        input.value = msg.startsWith('/') ? '/' : '';
+        input.focus();
+        DEBUG.info('MSG', 'Message sent successfully');
+    }
+    
+    return false; // ✅ IMPORTANT: Always return false
+};
+
+window.handleEnter = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.sendMessage(e);
+        return false;
     }
 };
-window.handleEnter = (e) => e.key === 'Enter' && window.sendMessage();
