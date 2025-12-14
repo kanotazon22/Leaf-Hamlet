@@ -1,0 +1,157 @@
+/* ============================================
+   STYLE2.CSS - QUẢN LÍ TỐI ƯU CHO CÁC THIẾT BỊ
+   ============================================ */
+
+@media (max-width: 768px) {
+    html, body {
+        height: 100vh;
+        height: 100dvh;
+    }
+    
+    body {
+        padding: 0;
+        align-items: stretch;
+    }
+    
+    .container {
+        border-radius: 0;
+        max-width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        max-height: none;
+        padding: 16px 14px;
+    }
+    
+    #chat {
+        max-width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        border-radius: 0;
+    }
+    
+    #messages {
+        padding: 8px 4px;
+        gap: 3px;
+    }
+    
+    .message {
+        max-width: 82%;
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+    
+    h2 {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+    
+    input {
+        font-size: 16px;
+        padding: 10px 13px;
+    }
+    
+    #messageInput {
+        padding: 8px 13px;
+        font-size: 15px;
+    }
+    
+    #sendButton {
+        padding: 8px 18px;
+        font-size: 12px;
+    }
+    
+    .input-area-wrapper {
+        padding: 6px 10px;
+    }
+    
+    .input-area {
+        gap: 6px;
+    }
+    
+    .server-status {
+        font-size: 11px;
+        padding: 6px 12px;
+        gap: 6px;
+    }
+    
+    .status-dot {
+        width: 7px;
+        height: 7px;
+    }
+    
+    .saved-account {
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 9px 10px;
+    }
+    
+    .account-info {
+        flex: 1 1 100%;
+    }
+    
+    .account-name {
+        font-size: 12px;
+    }
+    
+    .account-server {
+        font-size: 9px;
+    }
+    
+    .quick-login-btn {
+        flex: 1;
+        padding: 6px 12px;
+        font-size: 10px;
+    }
+    
+    .remove-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .sender-name {
+        font-size: 9px;
+    }
+    
+    .server-me .sender-name,
+    .server-other .sender-name {
+        font-size: 8px;
+    }
+
+    .social-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .social-link {
+        max-width: 100%;
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 480px;
+    }
+    
+    #chat {
+        max-width: 480px;
+    }
+    
+    .message {
+        font-size: 13.5px;
+    }
+}
+
+@supports (padding: env(safe-area-inset-bottom)) {
+    .input-area-wrapper {
+        padding-bottom: calc(8px + env(safe-area-inset-bottom));
+    }
+    
+    @media (max-width: 768px) {
+        .input-area-wrapper {
+            padding-bottom: calc(6px + env(safe-area-inset-bottom));
+        }
+    }
+}
