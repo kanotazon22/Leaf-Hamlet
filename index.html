@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Hamlet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="auth-screen" class="screen active">
+        <div class="auth-container">
+            <div class="auth-brand">
+                <div class="brand-line"></div>
+                <h1>LEAF</h1>
+                <div class="brand-sub">HAMLET</div>
+                <div class="brand-line"></div>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">LOGIN</button>
+                <button class="auth-tab" data-tab="register">REGISTER</button>
+            </div>
+            
+            <div id="login-form" class="auth-form active">
+                <div class="input-group">
+                    <label>USERNAME</label>
+                    <input type="text" id="login-username" placeholder="enter username...">
+                </div>
+                <div class="input-group">
+                    <label>PASSWORD</label>
+                    <input type="password" id="login-password" placeholder="••••••••">
+                </div>
+                <button class="btn-primary" onclick="Auth.login()">
+                    <span>LOGIN</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+            
+            <div id="register-form" class="auth-form">
+                <div class="input-group">
+                    <label>USERNAME</label>
+                    <input type="text" id="register-username" placeholder="enter username...">
+                </div>
+                <div class="input-group">
+                    <label>PASSWORD</label>
+                    <input type="password" id="register-password" placeholder="••••••••">
+                </div>
+                <div class="input-group">
+                    <label>CONFIRM PASSWORD</label>
+                    <input type="password" id="register-confirm" placeholder="••••••••">
+                </div>
+                <button class="btn-primary" onclick="Auth.register()">
+                    <span>CREATE ACCOUNT</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+            
+            <div id="auth-message" class="message"></div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div class="game-container">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-brand">
+                    <span class="header-logo">LEAF</span>
+                    <span class="header-divider">|</span>
+                    <span class="header-player">HAMLET</span>
+                </div>
+                <div class="header-right">
+                    <span class="welcome-text">Welcome, <strong id="player-name"></strong></span>
+                    <button class="btn-logout" onclick="Auth.logout()">LOGOUT ×</button>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="main">
+                    <span class="nav-num">01</span>
+                    <span>Combat</span>
+                </button>
+                <button class="nav-tab" data-tab="maps">
+                    <span class="nav-num">02</span>
+                    <span>Maps</span>
+                </button>
+                <button class="nav-tab" data-tab="info">
+                    <span class="nav-num">03</span>
+                    <span>Character</span>
+                </button>
+                <button class="nav-tab" data-tab="chat">
+                    <span class="nav-num">04</span>
+                    <span>Chat <span id="chat-unread-badge" class="chat-badge" style="display:none;"></span></span>
+                </button>
+                <button class="nav-tab" data-tab="market">
+                    <span class="nav-num">05</span>
+                    <span>Market</span>
+                </button>
+            </div>
+
+            <!-- ══════════ TAB 01: COMBAT ══════════ -->
+            <div id="main-tab" class="tab-content active">
+                <div class="combat-layout">
+                    <!-- Current map indicator -->
+                    <div class="current-map-bar">
+                        <span class="current-map-label">CURRENT MAP</span>
+                        <span id="current-map-name" class="current-map-name">Slum</span>
+                        <button class="btn-change-map" onclick="Game.goToMaps()">CHANGE MAP →</button>
+                    </div>
+
+                    <!-- Battle Area -->
+                    <div class="section">
+                        <div class="section-header">
+                            <h3>COMBAT</h3>
+                            <div class="section-line"></div>
+                        </div>
+                        
+                        <!-- Stats -->
+                        <div class="battle-stats">
+                            <div class="combatant-card player-card">
+                                <div class="combatant-header">
+                                    <div class="combatant-title">
+                                        <span class="combatant-label">PLAYER</span>
+                                        <span class="combatant-level">LV <span id="player-level-main"></span></span>
+                                    </div>
+                                    <div class="combatant-stats-row">
+                                        <span>HP: <span id="player-hp-text"></span></span>
+                                        <span>DMG: <span id="player-dmg-main"></span></span>
+                                    </div>
+                                </div>
+                                <div class="hp-bar">
+                                    <div id="player-hp-bar" class="hp-fill player"></div>
+                                    <div class="hp-glow"></div>
+                                </div>
+                            </div>
+                            
+                            <div id="enemy-info" class="combatant-card enemy-card" style="display:none;">
+                                <div class="combatant-header">
+                                    <div class="combatant-title">
+                                        <span class="combatant-label"><span id="enemy-name"></span></span>
+                                        <span class="combatant-level">LV <span id="enemy-level"></span></span>
+                                    </div>
+                                    <div class="combatant-stats-row">
+                                        <span>HP: <span id="enemy-hp-text"></span></span>
+                                        <span>DMG: <span id="enemy-dmg"></span></span>
+                                    </div>
+                                </div>
+                                <div id="enemy-hp-container">
+                                    <div class="hp-bar">
+                                        <div id="enemy-hp-bar" class="hp-fill enemy"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Battle Log -->
+                        <div class="battle-log-wrapper">
+                            <div class="battle-log-label">— BATTLE LOG —</div>
+                            <div id="battle-log"></div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="battle-actions">
+                            <button id="find-monster-btn" class="action-btn primary" onclick="Game.findMonster()">
+                                <span class="action-icon">⚔</span>
+                                <span>FIND MONSTER</span>
+                            </button>
+                            <button id="attack-btn" class="action-btn danger" onclick="Game.attack()" style="display:none;">
+                                <span class="action-icon">💥</span>
+                                <span>ATTACK</span>
+                            </button>
+                            <button id="potion-btn" class="action-btn success" onclick="Game.usePotion()" style="display:none;">
+                                <span class="action-icon">💊</span>
+                                <span>USE POTION</span>
+                            </button>
+                            <button id="flee-btn" class="action-btn secondary" onclick="Game.flee()" style="display:none;">
+                                <span class="action-icon">🏃</span>
+                                <span>FLEE</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══════════ TAB 02: MAPS ══════════ -->
+            <div id="maps-tab" class="tab-content">
+                <div class="section">
+                    <div class="section-header">
+                        <h3>WORLD MAP</h3>
+                        <div class="section-line"></div>
+                    </div>
+                    <div class="maps-grid" id="maps-grid"></div>
+                </div>
+            </div>
+
+            <!-- ══════════ TAB 03: CHARACTER ══════════ -->
+            <div id="info-tab" class="tab-content">
+                <div class="game-grid">
+                    <div class="section">
+                        <div class="section-header">
+                            <h3>CHARACTER INFO</h3>
+                            <div class="section-line"></div>
+                        </div>
+                        <table class="stats-table">
+                            <tr>
+                                <td class="stat-label">LEVEL</td>
+                                <td id="player-level" class="stat-value"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat-label">CURRENT HP</td>
+                                <td id="player-hp" class="stat-value"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat-label">MAX HP</td>
+                                <td id="player-max-hp" class="stat-value"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat-label">DAMAGE</td>
+                                <td id="player-dmg" class="stat-value"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat-label">EXPERIENCE</td>
+                                <td id="player-exp" class="stat-value"></td>
+                            </tr>
+                            <tr>
+                                <td class="stat-label">GOLD</td>
+                                <td id="player-gold" class="stat-value"></td>
+                            </tr>
+                        </table>
+                        <div class="exp-bar-container">
+                            <div class="exp-label">LEVEL PROGRESS</div>
+                            <div class="exp-bar">
+                                <div id="exp-bar-fill"></div>
+                                <div class="exp-shine"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-header">
+                            <h3>EQUIPMENT</h3>
+                            <div class="section-line"></div>
+                        </div>
+                        <div class="equipment-grid">
+                            <div class="grid-slot" data-slot="weapon">
+                                <div class="slot-icon">⚔</div>
+                                <div id="equipped-weapon" class="slot-item"></div>
+                            </div>
+                            <div class="grid-slot" data-slot="armor">
+                                <div class="slot-icon">🛡</div>
+                                <div id="equipped-armor" class="slot-item"></div>
+                            </div>
+                            <div class="grid-slot" data-slot="helmet">
+                                <div class="slot-icon">⛑</div>
+                                <div id="equipped-helmet" class="slot-item"></div>
+                            </div>
+                            <div class="grid-slot" data-slot="boots">
+                                <div class="slot-icon">👢</div>
+                                <div id="equipped-boots" class="slot-item"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-header">
+                            <h3>INVENTORY</h3>
+                            <div class="section-line"></div>
+                        </div>
+                        <div id="inventory-grid" class="inventory-grid">
+                            <p class="empty">— no items yet —</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══════════ TAB 04: CHAT ══════════ -->
+            <div id="chat-tab" class="tab-content">
+                <div class="section chat-section">
+                    <div class="section-header">
+                        <h3>PLAYER CHAT</h3>
+                        <div class="section-line"></div>
+                        <span id="online-count" class="online-count">— online</span>
+                    </div>
+
+                    <!-- Channel selector -->
+                    <div class="chat-channels">
+                        <button class="channel-btn active" data-channel="global" onclick="Chat.switchChannel('global', this)">
+                            🌐 Global
+                        </button>
+                        <button class="channel-btn" data-channel="map" onclick="Chat.switchChannel('map', this)">
+                            🗺 Map
+                        </button>
+                        <button class="channel-btn" data-channel="trade" onclick="Chat.switchChannel('trade', this)">
+                            💰 Trade
+                        </button>
+                    </div>
+
+                    <!-- Messages area -->
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="chat-empty">— no messages yet —</div>
+                    </div>
+
+<!-- Input area --> <form class="chat-input-area" onsubmit="event.preventDefault(); Chat.sendMessage(); return false;"> <input type="text" id="chat-input" class="chat-input" placeholder="Nhập tin nhắn..." maxlength="200" autocomplete="off" autocorrect="off" autocapitalize="off" enterkeyhint="send" > <button type="submit" class="chat-send-btn"> <span>Send</span> <span>→</span> </button> </form>
+                </div>
+            </div>
+
+            <!-- ══════════ TAB 05: MARKET ══════════ -->
+            <div id="market-tab" class="tab-content">
+                <div class="section coming-soon-section">
+                    <div class="section-header">
+                        <h3>MARKET</h3>
+                        <div class="section-line"></div>
+                    </div>
+                    <div class="coming-soon">
+                        <div class="cs-icon">◈</div>
+                        <p>COMING SOON</p>
+                        <span>This feature will be available soon</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="game.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>

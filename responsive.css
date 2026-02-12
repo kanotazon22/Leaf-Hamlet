@@ -1,0 +1,878 @@
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE.CSS - Powerful responsive design for web game
+   ══════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════
+   TABLET & DESKTOP (640px and above)
+   ══════════════════════════════════════════════════════════════ */
+@media (min-width: 640px) {
+  /* Auth container */
+  .auth-container {
+    margin: 80px auto;
+  }
+
+  /* Game grid - two column layout */
+  .game-grid {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  /* Maps grid - two column layout */
+  .maps-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Battle stats - horizontal layout */
+  .battle-stats {
+    flex-direction: row;
+  }
+
+  .battle-stats .combatant-card {
+    flex: 1;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MEDIUM SCREENS (641px - 860px)
+   ══════════════════════════════════════════════════════════════ */
+@media (min-width: 641px) and (max-width: 860px) {
+  /* Optimize container padding */
+  .game-container {
+    padding: 0 12px;
+  }
+
+  /* Adjust header spacing */
+  .header {
+    padding: 12px 16px;
+  }
+
+  .header-logo {
+    font-size: 1.6rem;
+  }
+
+  /* Optimize navigation */
+  .nav-tab {
+    padding: 10px 6px;
+    font-size: .8rem;
+  }
+
+  .nav-num {
+    font-size: .52rem;
+  }
+
+  /* Map cards - better spacing */
+  .map-card {
+    padding: 14px 16px;
+  }
+
+  .map-card-icon {
+    font-size: 1.6rem;
+    width: 2.2rem;
+  }
+
+  /* Battle actions - tighter spacing */
+  .battle-actions {
+    gap: 6px;
+  }
+
+  .action-btn {
+    padding: 12px 10px;
+    font-size: .64rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LARGE SCREENS (above 1024px)
+   ══════════════════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  /* Wider game container */
+  .game-container {
+    max-width: 1024px;
+  }
+
+  /* Enhanced auth container */
+  .auth-container {
+    max-width: 420px;
+    margin: 100px auto;
+  }
+
+  .auth-brand h1 {
+    font-size: 5.5rem;
+  }
+
+  /* Three column maps grid */
+  .maps-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Enhanced hover effects */
+  .map-card:hover {
+    padding-left: 32px;
+  }
+
+  /* Larger chat messages area */
+  .chat-messages {
+    max-height: 480px;
+  }
+
+  /* Better inventory grid - 6 columns on large screens */
+  .inventory-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+
+  /* Equipment grid stays 2x2 */
+  .equipment-grid {
+    gap: 10px;
+    padding: 16px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SMALL TABLETS (481px - 639px)
+   ══════════════════════════════════════════════════════════════ */
+@media (min-width: 481px) and (max-width: 639px) {
+  /* Auth adjustments */
+  .auth-container {
+    margin: 40px 16px;
+    max-width: 420px;
+  }
+
+  .auth-brand h1 {
+    font-size: 4.5rem;
+  }
+
+  /* Header optimization */
+  .header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header-brand {
+    flex: 1 0 100%;
+    justify-content: center;
+  }
+
+  .header-right {
+    flex: 1 0 100%;
+    justify-content: center;
+  }
+
+  /* Navigation */
+  .nav-tab {
+    padding: 11px 6px;
+    font-size: .82rem;
+  }
+
+  /* Battle layout optimization */
+  .battle-stats {
+    flex-direction: column;
+  }
+
+  .battle-actions {
+    flex-wrap: wrap;
+  }
+
+  .action-btn {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 140px;
+  }
+
+  /* Chat optimizations */
+  .chat-messages {
+    max-height: 320px;
+    min-height: 280px;
+  }
+
+  /* Maps grid - single column */
+  .maps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE DEVICES (max-width: 480px)
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  /* Remove screen padding */
+  .screen {
+    padding: 0;
+  }
+
+  /* Full-width auth container */
+  .auth-container {
+    margin: 0;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    max-width: 100%;
+  }
+
+  .auth-brand {
+    padding: 28px 20px 20px;
+  }
+
+  .auth-brand h1 {
+    font-size: 4rem;
+  }
+
+  .brand-sub {
+    font-size: .58rem;
+    letter-spacing: .4em;
+  }
+
+  .auth-form.active {
+    padding: 24px 20px 28px;
+  }
+
+  .message {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  /* Header - vertical stack */
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 12px 16px;
+  }
+
+  .header-brand {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .header-logo {
+    font-size: 1.5rem;
+  }
+
+  .header-divider {
+    display: none;
+  }
+
+  .header-player {
+    font-size: .55rem;
+  }
+
+  .header-right {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .welcome-text {
+    font-size: .85rem;
+  }
+
+  .btn-logout {
+    width: 100%;
+    padding: 8px 16px;
+  }
+
+  /* Navigation - compact */
+  .nav-tab {
+    padding: 10px 4px;
+    font-size: .78rem;
+    gap: 1px;
+  }
+
+  .nav-num {
+    display: none;
+  }
+
+  /* Section headers */
+  .section-header {
+    padding: 10px 12px;
+  }
+
+  .section-header h3 {
+    font-size: .62rem;
+  }
+
+  /* Current map bar - wrap on mobile */
+  .current-map-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .current-map-label {
+    font-size: .54rem;
+  }
+
+  .current-map-name {
+    flex: 1 0 100%;
+    font-size: .95rem;
+  }
+
+  .btn-change-map {
+    flex: 1 0 100%;
+    padding: 8px 12px;
+  }
+
+  /* Battle stats - vertical */
+  .battle-stats {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .combatant-header {
+    padding: 8px 12px;
+  }
+
+  .combatant-label {
+    font-size: .68rem;
+  }
+
+  .combatant-level,
+  .combatant-stats-row {
+    font-size: .58rem;
+  }
+
+  .combatant-stats-row {
+    gap: 12px;
+    font-size: .65rem;
+  }
+
+  /* Battle log - smaller */
+  .battle-log-wrapper {
+    margin: 0 12px 12px;
+  }
+
+  #battle-log {
+    height: 140px;
+    padding: 10px 12px;
+    font-size: .68rem;
+  }
+
+  /* Battle actions - wrap and stack */
+  .battle-actions {
+    flex-wrap: wrap;
+    padding: 0 12px 12px;
+    gap: 6px;
+  }
+
+  .action-btn {
+    flex: 1 1 100%;
+    padding: 12px 8px;
+    font-size: .62rem;
+  }
+
+  .action-btn.primary {
+    order: -1; /* Keep primary action on top */
+  }
+
+  .action-icon {
+    font-size: .85rem;
+  }
+
+  /* Maps grid - single column with tighter spacing */
+  .map-card {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .map-card:hover {
+    padding-left: 22px;
+  }
+
+  .map-card-icon {
+    font-size: 1.5rem;
+    width: 2rem;
+  }
+
+  .map-card-name {
+    font-size: 1rem;
+  }
+
+  .map-card-range {
+    font-size: .56rem;
+  }
+
+  .map-card-desc {
+    font-size: .8rem;
+  }
+
+  .map-card-badge {
+    font-size: .54rem;
+    padding: 3px 8px;
+  }
+
+  /* Stats table - compact */
+  .stats-table td {
+    padding: 9px 12px;
+  }
+
+  .stat-label {
+    font-size: .6rem;
+  }
+
+  .stat-value {
+    font-size: .82rem;
+  }
+
+  /* Experience bar */
+  .exp-bar-container {
+    padding: 12px;
+  }
+
+  .exp-label {
+    font-size: .54rem;
+  }
+
+  /* Inventory grid - 3 columns on mobile */
+  .inventory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .inv-item-icon {
+    font-size: 1.5rem;
+  }
+
+  .inv-item-qty {
+    font-size: .54rem;
+    padding: 1px 4px;
+  }
+
+  /* Equipment grid - stays 2x2 on mobile */
+  .equipment-grid {
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .slot-icon {
+    font-size: 1.7rem;
+  }
+
+  .slot-name {
+    font-size: .54rem;
+  }
+
+  .slot-item-name {
+    font-size: .64rem;
+  }
+
+  /* Chat section - optimized for mobile */
+  .chat-section {
+    min-height: 400px;
+  }
+
+  .chat-channels {
+    flex-wrap: wrap;
+  }
+
+  .channel-btn {
+    flex: 1 1 50%;
+    padding: 9px 6px;
+    font-size: .62rem;
+    border-bottom: 1px solid var(--l);
+  }
+
+  .channel-btn:nth-child(odd) {
+    border-right: 1px solid var(--l);
+  }
+
+  .chat-messages {
+    max-height: 280px;
+    min-height: 240px;
+    padding: 10px 12px;
+    gap: 5px;
+  }
+
+  .chat-msg {
+    padding: 7px 10px;
+  }
+
+  .chat-msg-user {
+    font-size: .62rem;
+  }
+
+  .chat-msg-lv {
+    font-size: .52rem;
+  }
+
+  .chat-msg-time {
+    font-size: .52rem;
+  }
+
+  .chat-msg-body {
+    font-size: .9rem;
+  }
+
+  .chat-system-msg {
+    font-size: .58rem;
+  }
+
+  .chat-input-area {
+    flex-wrap: wrap;
+  }
+
+  .chat-input {
+    flex: 1 1 100%;
+    padding: 10px 12px;
+    font-size: .95rem;
+  }
+
+  .chat-send-btn {
+    flex: 1 1 100%;
+    justify-content: center;
+    padding: 10px 16px;
+  }
+
+  /* Coming soon section */
+  .coming-soon {
+    padding: 40px 16px;
+  }
+
+  .cs-icon {
+    font-size: 2rem;
+  }
+
+  .coming-soon p {
+    font-size: .62rem;
+  }
+
+  .coming-soon span {
+    font-size: .85rem;
+  }
+
+  /* Game grid - single column */
+  .game-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   EXTRA SMALL DEVICES (max-width: 360px)
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 360px) {
+  /* Ultra-compact auth */
+  .auth-brand h1 {
+    font-size: 3.5rem;
+  }
+
+  .brand-sub {
+    font-size: .52rem;
+    letter-spacing: .3em;
+  }
+
+  .auth-tab {
+    font-size: .65rem;
+    padding: 12px 8px;
+  }
+
+  .auth-form input {
+    font-size: .95rem;
+    padding: 10px 12px;
+  }
+
+  .input-group label {
+    font-size: .58rem;
+  }
+
+  .btn-primary {
+    font-size: .7rem;
+    padding: 14px 16px;
+  }
+
+  /* Header - ultra compact */
+  .header-logo {
+    font-size: 1.3rem;
+  }
+
+  .header-player {
+    font-size: .5rem;
+  }
+
+  /* Navigation - icons only mode */
+  .nav-tab {
+    font-size: .72rem;
+    padding: 9px 3px;
+  }
+
+  /* Battle actions - full width stack */
+  .action-btn {
+    font-size: .58rem;
+    padding: 11px 6px;
+  }
+
+  /* Map cards - minimal */
+  .map-card {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .map-card-icon {
+    font-size: 1.3rem;
+    width: 1.8rem;
+  }
+
+  .map-card-name {
+    font-size: .95rem;
+  }
+
+  /* Chat - minimal */
+  .channel-btn {
+    font-size: .58rem;
+  }
+
+  .chat-messages {
+    max-height: 240px;
+  }
+
+  .chat-msg-body {
+    font-size: .85rem;
+  }
+
+  /* Inventory - 3 columns on extra small screens */
+  .inventory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 8px;
+  }
+
+  .inv-item-icon {
+    font-size: 1.3rem;
+  }
+
+  .inv-item-qty {
+    font-size: .5rem;
+    padding: 1px 3px;
+  }
+
+  /* Equipment grid adjustments */
+  .equipment-grid {
+    gap: 5px;
+    padding: 8px;
+  }
+
+  .slot-icon {
+    font-size: 1.5rem;
+  }
+
+  .slot-name {
+    font-size: .5rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LANDSCAPE ORIENTATION (Mobile devices)
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) and (orientation: landscape) {
+  /* Optimize for landscape */
+  .auth-container {
+    margin: 20px auto;
+  }
+
+  .auth-brand {
+    padding: 20px 28px 16px;
+  }
+
+  .auth-brand h1 {
+    font-size: 3.5rem;
+  }
+
+  .auth-form.active {
+    padding: 20px 28px 24px;
+  }
+
+  /* Header - horizontal in landscape */
+  .header {
+    flex-direction: row;
+    padding: 10px 16px;
+  }
+
+  .header-brand {
+    flex-direction: row;
+  }
+
+  .header-divider {
+    display: block;
+  }
+
+  .header-right {
+    flex-direction: row;
+  }
+
+  /* Battle stats - side by side */
+  .battle-stats {
+    flex-direction: row;
+    padding: 12px;
+  }
+
+  .battle-stats .combatant-card {
+    flex: 1;
+  }
+
+  /* Battle actions - horizontal */
+  .battle-actions {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .action-btn {
+    flex: 1;
+  }
+
+  /* Chat - better use of width */
+  .chat-messages {
+    max-height: 200px;
+  }
+
+  /* Maps - two columns in landscape */
+  .maps-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TOUCH DEVICE OPTIMIZATIONS
+   ══════════════════════════════════════════════════════════════ */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  .auth-tab,
+  .nav-tab,
+  .channel-btn {
+    min-height: 44px;
+  }
+
+  .action-btn {
+    min-height: 48px;
+  }
+
+  .map-card {
+    min-height: 60px;
+  }
+
+  .inv-item,
+  .item-slot {
+    min-height: 56px;
+  }
+
+  /* Remove hover-only effects */
+  .map-card:hover {
+    background: var(--w);
+    padding-left: 16px;
+  }
+
+  .map-card.active {
+    background: var(--k);
+    padding-left: 20px;
+  }
+
+  /* Better focus states for touch */
+  .auth-form input:focus,
+  .chat-input:focus {
+    border-width: 2px;
+    padding: 10px 13px;
+  }
+
+  /* Prevent zoom on input focus (iOS) */
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    font-size: 16px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PRINT STYLES
+   ══════════════════════════════════════════════════════════════ */
+@media print {
+  /* Hide interactive elements */
+  .header-right,
+  .nav-tabs,
+  .battle-actions,
+  .chat-input-area,
+  .btn-change-map,
+  .btn-logout {
+    display: none !important;
+  }
+
+  /* Optimize layout */
+  .screen {
+    padding: 0;
+  }
+
+  .game-container {
+    max-width: 100%;
+  }
+
+  /* Remove backgrounds */
+  .section-header {
+    background: transparent;
+    color: var(--k);
+    border-bottom: 2px solid var(--k);
+  }
+
+  /* Ensure readability */
+  body {
+    background: white;
+    color: black;
+  }
+
+  .chat-msg,
+  .combatant-card {
+    background: white;
+    border: 1px solid black;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HIGH DPI / RETINA DISPLAYS
+   ══════════════════════════════════════════════════════════════ */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Sharper borders and shadows */
+  .section,
+  .auth-container,
+  .map-card {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Optimize text rendering */
+  body {
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION (Accessibility)
+   ══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Remove pulse animation */
+  .cs-icon {
+    animation: none;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DARK MODE PREFERENCE (Future-proofing)
+   ══════════════════════════════════════════════════════════════ */
+@media (prefers-color-scheme: dark) {
+  /* 
+    Currently the game uses a fixed light color scheme.
+    This section is reserved for future dark mode implementation.
+    Uncomment and customize when adding dark mode support.
+  */
+  
+  /* :root {
+    --k: #f5f2ed;
+    --w: #0a0a0a;
+    --m: #999;
+    --l: #333;
+    --p: #1a1a1a;
+  } */
+}
